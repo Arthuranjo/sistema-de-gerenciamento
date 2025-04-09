@@ -65,10 +65,6 @@ def editar_produto(
 def listar():
     return produto_controller.listar_produtos()
 
-@router.get("/{produto_id}", response_model=ProdutoSchemaResposta)
-def buscar(produto_id: int):
-    return produto_controller.buscar_produto_por_id(produto_id)
-
 @router.post("/")
 def criar(produto: ProdutoSchema):
     return produto_controller.criar_produto(produto)
@@ -81,10 +77,13 @@ def atualizar(produto_id: int, produto: ProdutoSchema):
 def deletar(produto_id: int):
     return produto_controller.deletar_produto(produto_id)
 
-# FORMULÁRIOS
 
 @router.post("/deletar/{produto_id}")
 def excluir_produto(produto_id: int):
     produto_controller.deletar_produto(produto_id)
     return RedirectResponse(url="/produtos/pagina", status_code=303)
+
+@router.get("/{produto_id}", response_model=ProdutoSchemaResposta)
+def buscar(produto_id: int):
+    return produto_controller.buscar_produto_por_id(produto_id)
 

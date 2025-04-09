@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\arthu\OneDrive\Ambiente de Trabalho\sistema-de-gerenciamento\venv"
+VIRTUAL_ENV="C:\Users\arthu\OneDrive\Ambiente de Trabalho\sistema-gerenciamento\sistema-de-gerenciamento\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

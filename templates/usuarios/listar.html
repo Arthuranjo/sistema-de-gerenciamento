@@ -2,39 +2,40 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Usuários</title>
+    <title>Lista de Produtos</title>
 </head>
 <body>
-    <h1>Usuários Cadastrados</h1>
+    <h1>Lista de Produtos</h1>
 
-    <a href="/usuarios/formulario">Cadastrar Novo Usuário</a><br><br>
+    <a href="/produtos/formulario">Cadastrar Novo Produto</a>
+    <br><br>
 
-    {% if usuarios %}
-        <table border="1" cellpadding="10">
+    <table border="1">
+        <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Email</th>
+                <th>Preço</th>
+                <th>Estoque</th>
                 <th>Ações</th>
             </tr>
-            {% for usuario in usuarios %}
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
             <tr>
-                <td>{{ usuario.id }}</td>
-                <td>{{ usuario.nome }}</td>
-                <td>{{ usuario.email }}</td>
+                <td>{{ produto.id }}</td>
+                <td>{{ produto.nome }}</td>
+                <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
+                <td>{{ produto.estoque }}</td>
                 <td>
-                    
-                    <form action="/usuarios/deletar" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="{{ usuario.id }}">
-                        <button type="submit" onclick="return confirm('Deseja excluir este usuário?');">Excluir</button>
+                    <a href="/produtos/formulario_editar/{{ produto.id }}">Editar</a> |
+                    <form method="post" action="/produtos/deletar/{{ produto.id }}" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
                     </form>
-                    <a href="/usuarios/formulario?id={{ usuario.id }}&nome={{ usuario.nome }}&email={{ usuario.email }}">Editar</a>
                 </td>
             </tr>
             {% endfor %}
-        </table>
-    {% else %}
-        <p>Nenhum usuário cadastrado.</p>
-    {% endif %}
+        </tbody>
+    </table>
 </body>
 </html>

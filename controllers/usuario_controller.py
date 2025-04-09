@@ -48,6 +48,8 @@ def buscar_usuario(id: int):
 
 
 def criar_usuario(usuario: UsuarioSchema):
+    conn = None
+    cursor = None
     try:
         conn = conectar()
         cursor = conn.cursor()
@@ -60,9 +62,13 @@ def criar_usuario(usuario: UsuarioSchema):
                        (usuario.nome, usuario.email, usuario.senha))
         conn.commit()
         return {"mensagem": "Usuário criado com sucesso"}
+    except Exception as e:
+        print (f"erro ao criar usuario: {e}")
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 def atualizar_usuario(id: int, usuario: UsuarioSchema):
     try:
