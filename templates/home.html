@@ -1,0 +1,39 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gerenciamento</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Opcional -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
+        a.button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo ao Sistema de Gerenciamento</h1>
+    <a href="/usuarios/formulario" class="button">Cadastro de Usuários</a>
+    <a href="/produtos/formulario" class="button">Cadastro de Produtos</a>
+</body>
+</html>

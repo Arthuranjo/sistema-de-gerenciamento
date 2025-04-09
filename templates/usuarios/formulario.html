@@ -1,0 +1,21 @@
+<form action="/usuarios/formulario" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" value="{{ nome or '' }}"><br>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" value="{{ email or '' }}"><br>
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha"><br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+{% if erros %}
+    <ul style="color: red;">
+        {% for erro in erros %}
+            <li><strong>{{ erro['loc'][0] }}:</strong> {{ erro['msg'] }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
