@@ -2,40 +2,70 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Produtos</title>
+    <title>Lista de Usuários</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            display: inline;
+        }
+
+        .botoes a, .botoes button {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lista de Produtos</h1>
+    <h1>Lista de Usuários</h1>
 
-    <a href="/produtos/formulario">Cadastrar Novo Produto</a>
+    <a href="/usuarios/formulario">Cadastrar Novo Usuário</a>
     <br><br>
 
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Preço</th>
-                <th>Estoque</th>
+                <th>Email</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            {% for produto in produtos %}
+            {% for usuario in usuarios %}
             <tr>
-                <td>{{ produto.id }}</td>
-                <td>{{ produto.nome }}</td>
-                <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
-                <td>{{ produto.estoque }}</td>
-                <td>
-                    <a href="/produtos/formulario_editar/{{ produto.id }}">Editar</a> |
-                    <form method="post" action="/produtos/deletar/{{ produto.id }}" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.nome }}</td>
+                <td>{{ usuario.email }}</td>
+                <td class="botoes">
+                    <a href="/usuarios/formulario_editar/{{ usuario.id }}">Editar</a>
+                    <form method="post" action="/usuarios/deletar/{{ usuario.id }}">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
                     </form>
                 </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">Nenhum usuário cadastrado.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <br>
+    <a href="/">Voltar à Tela Inicial</a>
 </body>
 </html>
+
