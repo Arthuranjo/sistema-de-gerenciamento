@@ -8,9 +8,6 @@ from controllers import usuario_controller
 router = APIRouter(prefix="/usuarios", tags=["Usuários"])
 templates = Jinja2Templates(directory="templates")
 
-# -------------------------
-# FORMULÁRIOS HTML (JINJA2)
-# -------------------------
 
 @router.get("/", response_class=HTMLResponse)
 async def pagina_inicial(request: Request):
@@ -38,11 +35,11 @@ def exibir_formulario_edicao(request: Request, id: int):
             "mensagem": f"Usuário com id {id} não encontrado."
         })
 
-    print("DEBUG:", usuario, type(usuario))  # isso vai ajudar a saber se é dict, Row, etc.
+    print("DEBUG:", usuario, type(usuario))  
 
     return templates.TemplateResponse("usuarios/formulario.html", {
         "request": request,
-        "id": usuario["id"],        # <= use colchetes aqui
+        "id": usuario["id"],        
         "nome": usuario["nome"],
         "email": usuario["email"],
         "senha": ""
@@ -93,9 +90,7 @@ def deletar_usuario_formulario(id: int):
     usuario_controller.deletar_usuario(id)
     return RedirectResponse(url="/usuarios/pagina", status_code=303)
 
-# -------------------------
-# API RESTful
-# -------------------------
+
 
 @router.get("/", response_model=list[UsuarioSchemaResposta])
 def get_usuarios():
@@ -113,9 +108,6 @@ def put_usuario(id: int, usuario: UsuarioSchema):
 def deletar_usuario(id: int):
     return usuario_controller.deletar_usuario(id)
 
-# -------------------------
-# ROTA GENÉRICA (DEIXAR POR ÚLTIMO)
-# -------------------------
 
 @router.get("/{id}", response_model=UsuarioSchemaResposta)
 def get_usuario(id: int):
