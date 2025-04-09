@@ -3,14 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        a {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e9ecef;
+        }
+
+        form {
+            display: inline;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        .editar-link {
+            margin-right: 8px;
+            color: #fafcfe;
+            text-decoration: none;
+        }
+
+        .editar-link:hover {
+            text-decoration: underline;
+        }
+
+        .voltar {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            color: #fdfeff;
+            text-decoration: none;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Lista de Produtos</h1>
 
     <a href="/produtos/formulario">Cadastrar Novo Produto</a>
-    <br><br>
 
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -28,17 +111,16 @@
                 <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
                 <td>{{ produto.estoque }}</td>
                 <td>
-                    <a href="/produtos/formulario_editar/{{ produto.id }}">Editar</a> |
-                    <form method="post" action="/produtos/deletar/{{ produto.id }}" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                    <a href="/produtos/formulario_editar/{{ produto.id }}" class="editar-link">Editar</a>
+                    <form method="post" action="/produtos/deletar/{{ produto.id }}" onsubmit="return confirm('Tem certeza que deseja excluir?')">
+                        <button type="submit">Excluir</button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
-
-            <a href="/">voltar a tela de inicio</a>
         </tbody>
     </table>
 
+    <a href="/" class="voltar">Voltar à tela de início</a>
 </body>
 </html>

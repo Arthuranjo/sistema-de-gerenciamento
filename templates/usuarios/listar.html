@@ -4,35 +4,94 @@
     <meta charset="UTF-8">
     <title>Lista de Usuários</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .top-link {
+            display: block;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
         table {
-            border-collapse: collapse;
             width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
         }
 
         th, td {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
+            padding: 12px;
+            border: 1px solid #ddd;
             text-align: center;
         }
 
         th {
             background-color: #f2f2f2;
+            color: #333;
         }
 
-        form {
+        .botoes a {
+            background-color: #28a745; /* verde */
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+
+        .botoes a:hover {
+            background-color: #218838;
+        }
+
+        .botoes button {
+            background-color: #dc3545; /* vermelho */
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .botoes button:hover {
+            background-color: #c82333;
+        }
+
+        .botoes form {
             display: inline;
         }
 
-        .botoes a, .botoes button {
-            margin-right: 5px;
+        .bottom-link {
+            margin-top: 30px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>Lista de Usuários</h1>
 
-    <a href="/usuarios/formulario">Cadastrar Novo Usuário</a>
-    <br><br>
+    <div class="top-link">
+        <a href="/usuarios/formulario">Cadastrar Novo Usuário</a>
+    </div>
 
     <table>
         <thead>
@@ -64,8 +123,9 @@
         </tbody>
     </table>
 
-    <br>
-    <a href="/">Voltar à Tela Inicial</a>
+    <div class="bottom-link">
+        <a href="/">Voltar à Tela Inicial</a>
+    </div>
 </body>
 </html>
 
